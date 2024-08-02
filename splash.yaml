@@ -1,0 +1,13 @@
+flutter_native_splash:
+  color: "#4355ff"
+  color_dark: "#4355ff"
+  image: assets/logo/quizlet_icon1.png
+  image_dark: assets/logo/quizlet_icon1.png
+
+  android_12:
+    color: "#4355ff"
+    color_dark: "#4355ff"
+    image: assets/logo/quizlet_icon1.png
+    image_dark: assets/logo/quizlet_icon1.png
+
+  web: false
