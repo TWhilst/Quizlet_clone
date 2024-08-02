@@ -72,7 +72,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
             validator: (password) => eLogic.validatePassword(password),
             // errorText: widget.eLogic.inputPassword? "Please enter a password".toUpperCase() : null,
           ),
-          const SizedBox(height: 7),
+          const SizedBox(height: 6),
           data[1]? const SizedBox() :
           ETextSec2(text: "Password".toUpperCase()),
         ],
