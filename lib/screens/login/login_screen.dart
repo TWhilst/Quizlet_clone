@@ -5,6 +5,7 @@ import 'package:quizlet_clone_app/screens/login/widgets/login_button.dart';
 import 'package:quizlet_clone_app/screens/login/widgets/login_check_up_question.dart';
 import 'package:quizlet_clone_app/screens/login/widgets/login_form.dart';
 import 'package:quizlet_clone_app/screens/sign_up_screen/widgets/quick_sign_up_options.dart';
+import 'package:quizlet_clone_app/screens/sign_up_screen/widgets/terms_and_privacy_policy.dart';
 import 'package:quizlet_clone_app/shared/e_text.dart';
 import 'package:quizlet_clone_app/utils/constants/e_colors.dart';
 import 'package:quizlet_clone_app/utils/e_helper_functions.dart';
@@ -50,6 +51,7 @@ class _LoginScreenState extends State<LoginScreen> {
     // bool _hover = false;
     return Scaffold(
       backgroundColor: isDark ? EColors.secBGColor : Colors.grey[200],
+      resizeToAvoidBottomInset: false,
       appBar: AppBar(
         leading: IconButton(
           onPressed: () {
@@ -62,41 +64,51 @@ class _LoginScreenState extends State<LoginScreen> {
           ),
         ),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          padding: const EdgeInsets.only(top: 10, right: 20, left: 20),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              // Sign up title text
-              ETextSec1(text: "Login in quickly with".toUpperCase()),
-              const SizedBox(height: 12),
+      body: Stack(
+        alignment: Alignment.center,
+        fit: StackFit.expand,
+        children: [
+          SingleChildScrollView(
+            child: Container(
+              padding: const EdgeInsets.only(top: 10, right: 20, left: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // Sign up title text
+                  ETextSec1(text: "Login in quickly with".toUpperCase()),
+                  const SizedBox(height: 12),
 
-              // Other sign up options
-              const QuickSignUpOptions(),
-              const SizedBox(height: 36),
+                  // Other sign up options
+                  const QuickSignUpOptions(),
+                  const SizedBox(height: 18),
 
-              // Sign up form
-              LoginForm(
-                formKey: _formKey,
-                controller: _controller,
-                // eLogic: eLogic,
+                  // Sign up form
+                  LoginForm(
+                    formKey: _formKey,
+                    controller: _controller,
+                    // eLogic: eLogic,
+                  ),
+                  const SizedBox(height: 12),
+
+                  // Sign up button
+                  LoginButton(
+                    // eLogic: eLogic,
+                    controller: _controller,
+                    formKey: _formKey,
+                  ),
+                  const SizedBox(height: 18),
+
+                  // Terms and policy
+                  const LoginCheckUpQuestion(),
+                ],
               ),
-              const SizedBox(height: 12),
-
-              // Sign up button
-              LoginButton(
-                // eLogic: eLogic,
-                controller: _controller,
-                formKey: _formKey,
-              ),
-              const SizedBox(height: 18),
-
-              // Terms and policy
-              const LoginCheckUpQuestion(),
-            ],
+            ),
           ),
-        ),
+          const Positioned(
+            bottom: 10,
+            child: TermsAndPrivacyPolicy(),
+          ),
+        ],
       ),
     );
   }

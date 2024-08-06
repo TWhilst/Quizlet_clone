@@ -34,18 +34,23 @@ class EText2 extends StatelessWidget {
 }
 
 class ETextSub extends StatelessWidget {
-  const ETextSub({super.key, required this.text});
+  const ETextSub({super.key, required this.text, this.fontSize = 14, this.color, this.textAlign = TextAlign.center});
 
   final String text;
+  final double? fontSize;
+  final Color? color;
+  final TextAlign textAlign;
+
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       style: GoogleFonts.interTight(
           textStyle: Theme.of(context).textTheme.titleSmall,
-          fontSize: 14,
+          fontSize: fontSize,
+          color: color,
           fontWeight: FontWeight.w800),
-      textAlign: TextAlign.center,
+      textAlign: textAlign,
     );
   }
 }
@@ -61,26 +66,29 @@ class ETextSec1 extends StatelessWidget {
       style: GoogleFonts.interTight(
           textStyle: Theme.of(context).textTheme.titleSmall,
           fontSize: 13,
-          letterSpacing: 1,
-          fontWeight: FontWeight.w600),
+          // letterSpacing: 1,
+          fontWeight: FontWeight.w600,
+      ),
       textAlign: TextAlign.center,
     );
   }
 }
 
 class ETextSec5 extends StatelessWidget {
-  const ETextSec5({super.key, required this.text});
+  const ETextSec5({super.key, required this.text, this.fontSize = 13, this.textAlign = TextAlign.center});
 
   final String text;
+  final double? fontSize;
+  final TextAlign textAlign;
   @override
   Widget build(BuildContext context) {
     return Text(
       text,
       style: GoogleFonts.interTight(
-        fontSize: 13,
+        fontSize: fontSize,
         fontWeight: FontWeight.w500,
       ),
-      textAlign: TextAlign.center,
+      textAlign: textAlign,
     );
   }
 }
@@ -95,7 +103,7 @@ class ETextSec2 extends StatelessWidget {
       text,
       style: GoogleFonts.interTight(
         textStyle: Theme.of(context).textTheme.titleSmall,
-        fontSize: 13,
+        fontSize: 12,
         letterSpacing: 2,
         fontWeight: FontWeight.w600,
       ),

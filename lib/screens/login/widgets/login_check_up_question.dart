@@ -1,17 +1,41 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:quizlet_clone_app/provider/login_provider.dart';
 import 'package:quizlet_clone_app/utils/constants/E_text_string.dart';
 import 'package:quizlet_clone_app/utils/constants/e_colors.dart';
 import 'package:quizlet_clone_app/utils/e_helper_functions.dart';
 
-class LoginCheckUpQuestion extends StatelessWidget {
+class LoginCheckUpQuestion extends ConsumerStatefulWidget {
   const LoginCheckUpQuestion({
     super.key,
   });
 
   @override
+  ConsumerState<LoginCheckUpQuestion> createState() => _LoginCheckUpQuestionState();
+}
+
+class _LoginCheckUpQuestionState extends ConsumerState<LoginCheckUpQuestion> {
+
+  late TextEditingController emailCheckController;
+  late TextEditingController passwordCheckController;
+
+  @override
+  void initState() {
+    emailCheckController = TextEditingController();
+    passwordCheckController = TextEditingController();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    emailCheckController.dispose();
+    super.dispose();
+  }
+  @override
   Widget build(BuildContext context) {
+    final eLogic = ref.read(loginControllerProvider.notifier);
     final isDark = EHelperFunctions.isDarkMode(context);
     return Center(
       child: Text.rich(
@@ -26,7 +50,9 @@ class LoginCheckUpQuestion extends StatelessWidget {
               ),
             ),
             TextSpan(
-              recognizer: TapGestureRecognizer()..onTap = () {},
+              recognizer: TapGestureRecognizer()..onTap = () {
+                eLogic.enterUsername(context, emailCheckController);
+              },
               text: EText.username,
               style: GoogleFonts.interTight(
                 textStyle: Theme.of(context).textTheme.titleMedium,
@@ -45,7 +71,9 @@ class LoginCheckUpQuestion extends StatelessWidget {
               ),
             ),
             TextSpan(
-              recognizer: TapGestureRecognizer()..onTap = () {},
+              recognizer: TapGestureRecognizer()..onTap = () {
+                eLogic.enterPassword(context, emailCheckController);
+              },
               text: EText.password,
               style: GoogleFonts.interTight(
                 textStyle: Theme.of(context).textTheme.titleMedium,

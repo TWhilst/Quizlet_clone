@@ -22,11 +22,13 @@ class LoginForm extends ConsumerStatefulWidget {
   // final List<bool> data;
   // final LoginController eLogic;
 
+
   @override
   ConsumerState<LoginForm> createState() => _LoginFormState();
 }
 
 class _LoginFormState extends ConsumerState<LoginForm> {
+
   @override
   Widget build(BuildContext context) {
     final data = ref.watch(loginControllerProvider);
@@ -53,16 +55,7 @@ class _LoginFormState extends ConsumerState<LoginForm> {
 
           // this is where the error message will be
           data[0]? const SizedBox() :
-          Text(
-            "Email address or username".toUpperCase(),
-            style: GoogleFonts.interTight(
-                textStyle: Theme.of(context).textTheme.titleSmall,
-                fontSize: 13,
-                letterSpacing: 2,
-                fontWeight: FontWeight.w600,
-                color: isDark ? EColors.white : Colors.black),
-            textAlign: TextAlign.center,
-          ),
+          ETextSec2(text: "Email address or username".toUpperCase(),),
           const SizedBox(height: 6),
           // Password field
           EField(
